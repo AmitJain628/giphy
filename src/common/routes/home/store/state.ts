@@ -1,6 +1,5 @@
 import { IHomeState } from '@home/store/types';
 
 export default (): IHomeState => ({
-  isLoading: true,
-  isf: true
+  isLoading: true
 });

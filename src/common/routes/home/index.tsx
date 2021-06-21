@@ -1,39 +1,17 @@
-import React, { useEffect } from 'react';
-import { calculateConnectedNode, createNodes, getEdgeWeights, updateColor } from '@home/utils';
-import { IEdgeNodes, INodes } from '@home/types';
-import AppConstant from '@src/common/constants/appConstants';
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 import { StyledGrid } from './styles';
+import { mapDispatchToProps, mapStateToProps } from './container';
 
-const Home: React.FC = () => {
+interface IProps extends RouteComponentProps {
+  loading: boolean;
+}
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-     const initNodes = createNodes();
-     const edgesByNode = getEdgeWeights(initNodes);
-     setNodesState(initNodes, edgesByNode);
-    }
-  }, []);
-
-  const setNodesState = (newNodes: INodes, newNodeEges: IEdgeNodes) => {
-    getSuggestedColor(newNodes, newNodeEges);
-  };
-
-  const getSuggestedColor = (newNodes: INodes, newNodeEges: IEdgeNodes) => {
-        const colors = Object.keys(AppConstant.COLORS);
-        let max = Number.MIN_SAFE_INTEGER;
-        // tslint:disable-next-line:prefer-for-of
-        for (let i = 0; i < colors.length; i++) {
-          const updatedNode: INodes = {...newNodes};
-          const updatedNodeEges: IEdgeNodes = {...newNodeEges};
-          updateColor(Number(colors[i]), updatedNode, updatedNodeEges);
-          const colorCount = calculateConnectedNode(updatedNodeEges);
-          if (colorCount > max) {
-            max = colorCount;
-          }
-        }
-
-  };
+const Home: React.FC<IProps> = ({ loading }): JSX.Element => {
+  console.log('loading', loading);
 
   return (
        <StyledGrid>
@@ -44,4 +22,9 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Home)
+);

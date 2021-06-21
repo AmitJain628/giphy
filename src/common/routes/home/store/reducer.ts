@@ -6,6 +6,11 @@ import { IHomeState } from '@home/store/types';
 
 const reducers = {
   [CONSTANTS.SET_LOADING]: (state: IHomeState, payload: boolean) => {
+    console.log('payloadd');
+    state.isLoading = payload;
+  },
+  [CONSTANTS.SET_DATA]: (state: IHomeState, payload: boolean) => {
+    console.log('payloadd  dsds');
     state.isLoading = payload;
   }
 };
