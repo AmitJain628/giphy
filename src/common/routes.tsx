@@ -3,20 +3,9 @@ import Loadable, { LoadingComponentProps } from 'react-loadable';
 
 const loading: FunctionComponent<LoadingComponentProps> = () => null;
 
-const Books = Loadable({
+const Home = Loadable({
   loading,
-  loader: () => import(/* webpackChunkName: 'home' */ './routes/Books')
-});
-
-const AddBook = Loadable({
-  loading,
-  loader: () => import(/* webpackChunkName: 'home' */ './routes/AddBook'
-  )
-});
-
-const EditBook = Loadable({
-  loading,
-  loader: () => import(/* webpackChunkName: 'home' */ './routes/EditBook')
+  loader: () => import(/* webpackChunkName: 'home' */ './routes/home')
 });
 
 const routes: IRoutes[] = [
@@ -24,19 +13,7 @@ const routes: IRoutes[] = [
     path: '/',
     basePath: '/',
     exact: true,
-    component: Books,
-  },
-  {
-    path: '/add',
-    basePath: '/',
-    exact: true,
-    component: AddBook,
-  },
-  {
-    path: '/edit',
-    basePath: '/edit',
-    exact: true,
-    component: EditBook,
+    component: Home,
   }
 ];
 

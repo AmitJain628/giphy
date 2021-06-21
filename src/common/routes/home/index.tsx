@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { calculateConnectedNode, createNodes, getEdgeWeights, updateColor } from '@home/utils';
 import { IEdgeNodes, INodes } from '@home/types';
 import AppConstant from '@src/common/constants/appConstants';
-import Grid from '@home/Grid';
 
 import { StyledGrid } from './styles';
 
@@ -39,7 +38,7 @@ const Home: React.FC = () => {
   return (
        <StyledGrid>
         <div>
-          <Grid  />
+          I am home
         </div>
        </StyledGrid>
   );
