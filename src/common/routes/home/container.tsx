@@ -11,8 +11,8 @@ export const mapStateToProps = (state: RootState): IMapStateToProps => {
 };
 
 export const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): IMapDispatchToProps => ({
-    fetchData(_giphy: IGiphy): void {
-    dispatch(actions.fetchData());
+  fetchTrendingData(_giphy: IGiphy): void {
+    dispatch(actions.fetchTrendingData());
   }
 });
 
@@ -21,5 +21,5 @@ export interface IMapStateToProps{
 }
 
 export interface IMapDispatchToProps{
-    fetchData(giphy: IGiphy): void;
+  fetchTrendingData(giphy?: IGiphy): void;
 }

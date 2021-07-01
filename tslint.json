@@ -91,7 +91,7 @@
     "no-duplicate-imports": true,
     "no-duplicate-switch-case": true,
     "no-empty": true,
-    "no-empty-interface": true,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-invalid-this": [true, "check-function-in-method"],
     "no-inferrable-types": [true, "ignore-params"],

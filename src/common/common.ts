@@ -1,15 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { breakpoints, colors } from './variables';
+import { breakpoints } from './variables';
 
 export default createGlobalStyle`
   *{
     outline: none;
-  }
-
-  body{
-    overflow: auto;
-    color: ${colors.darkGray};
   }
 
   #app{
