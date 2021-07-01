@@ -39,12 +39,12 @@ const Home: React.FC<IProps> = ({ searchData, history, searchGif }): JSX.Element
         <GlobalStyles />
         <StyledGrid>
           <div>
-            <input type='text' value={search} onChange={e => setSearch(e.target.value)} />
-            <button onClick={searchGiphy}>Search</button>
-            <button onClick={navigateToTrending}>Navigate to trending</button>
+            <input data-cy='search-input' type='text' value={search} onChange={e => setSearch(e.target.value)} />
+            <button data-cy='search-btn' onClick={searchGiphy}>Search</button>
+            <button data-cy='naviagte-btn' onClick={navigateToTrending}>Navigate to trending</button>
             <button onClick={themeToggler}>Switch Theme</button>
             {/* <button onClick={themeToggler}>Switch Theme</button> */}
-            <StyledDiv>
+            <StyledDiv data-cy='search-content'>
             {
              searchData && searchData.map((trend: IDatum) => (
                         <div key={trend.id} className='gif-block' ><img src={trend.images.original.url} /></div>
