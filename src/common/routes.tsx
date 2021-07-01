@@ -8,12 +8,23 @@ const Home = Loadable({
   loader: () => import(/* webpackChunkName: 'home' */ './routes/home')
 });
 
+const Trending = Loadable({
+  loading,
+  loader: () => import(/* webpackChunkName: 'trending' */ './routes/trending')
+});
+
 const routes: IRoutes[] = [
   {
     path: '/',
     basePath: '/',
     exact: true,
     component: Home,
+  },
+  {
+    path: '/trending',
+    basePath: '/',
+    exact: true,
+    component: Trending,
   }
 ];
 

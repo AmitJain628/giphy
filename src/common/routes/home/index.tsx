@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from '@common/globalStyle';
 import { darkTheme, lightTheme } from '@common/theme';
+import { IDatum } from '@src/common/types/giphy';
 
-import { StyledGrid } from './styles';
+import {  StyledDiv, StyledGrid } from './styles';
 import { mapDispatchToProps, mapStateToProps } from './container';
-import { IGiphy } from './types';
 
 interface IProps extends RouteComponentProps {
-  isLoading: boolean;
-  fetchTrendingData(giphy?: IGiphy): void;
+  searchData: IDatum[];
+  searchGif(search: string): void;
 }
 
-const Home: React.FC<IProps> = ({ isLoading, fetchTrendingData }): JSX.Element => {
+const Home: React.FC<IProps> = ({ searchData, history, searchGif }): JSX.Element => {
   const [theme, setTheme] = useState('light');
+  const [search, setSearch] = useState('');
+
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
-  useEffect(() => {
-    console.log('isLoading', isLoading, themeToggler);
-    fetchTrendingData();
-  }, []);
+  const navigateToTrending = () => {
+    history.push('/trending');
+  };
+
+  const searchGiphy = () => {
+    searchGif(search);
+  };
+
+  console.log('isLoading', searchData);
 
   return (
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -32,8 +39,18 @@ const Home: React.FC<IProps> = ({ isLoading, fetchTrendingData }): JSX.Element =
         <GlobalStyles />
         <StyledGrid>
           <div>
-            I am home
+            <input type='text' value={search} onChange={e => setSearch(e.target.value)} />
+            <button onClick={searchGiphy}>Search</button>
+            <button onClick={navigateToTrending}>Navigate to trending</button>
+            <button onClick={themeToggler}>Switch Theme</button>
             {/* <button onClick={themeToggler}>Switch Theme</button> */}
+            <StyledDiv>
+            {
+             searchData && searchData.map((trend: IDatum) => (
+                        <div key={trend.id} className='gif-block' ><img src={trend.images.original.url} /></div>
+             ))
+            }
+         </StyledDiv>
           </div>
         </StyledGrid>
         </>

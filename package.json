@@ -67,6 +67,7 @@
     "classnames": "^2.2.6",
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
+    "cypress": "^7.6.0",
     "dotenv": "^6.2.0",
     "elastic-apm-js-base": "^3.0.0",
     "elastic-apm-node": "^2.6.0",
@@ -296,6 +297,7 @@
     "start": "babel-node tools/run start",
     "build-cypress": "babel-node tools/run build --release --cypress",
     "cypress": "cypress open --env $URL",
-    "cypress-run": "cypress run --record --key 541c8b23-47a2-47e9-a8e1-ff1d29f6da50 --env $URL"
+    "cypress-run": "cypress run --record --key 541c8b23-47a2-47e9-a8e1-ff1d29f6da50 --env $URL",
+    "cypress:open": "cypress open"
   }
 }

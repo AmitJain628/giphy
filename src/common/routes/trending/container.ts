@@ -3,28 +3,22 @@ import { AnyAction, Dispatch } from 'redux';
 import { RootState } from '@src/common/store/reducers';
 import { IDatum } from '@src/common/types/giphy';
 
-import { IGiphy } from './types';
-
 export const mapStateToProps = (state: RootState): IMapStateToProps => {
   return {
-    searchData: state.home.searchData
+    trendingData: state.home.trendingData
   };
 };
 
 export const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): IMapDispatchToProps => ({
-  fetchTrendingData(_giphy: IGiphy): void {
+  fetchTrendingData(): void {
     dispatch(actions.fetchTrendingData());
-  },
-  searchGif(search: string): void {
-    dispatch(actions.searchGiphyData(search));
   }
 });
 
 export interface IMapStateToProps{
-  searchData: IDatum[];
+    trendingData: IDatum[];
 }
 
 export interface IMapDispatchToProps{
-  fetchTrendingData(giphy?: IGiphy): void;
-  searchGif(search: string): void;
+  fetchTrendingData(): void;
 }

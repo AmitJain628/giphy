@@ -16,9 +16,9 @@ export const fetchTrendingGiphyService = async (limit: number, offset: number): 
 };
 
 // tslint:disable-next-line:no-any
-export const searchGiphyService = async (limit: number, offset: number): Promise<IResponse[] | any> => {
+export const searchGiphyService = async (query: string, limit: number, offset: number): Promise<IResponse[] | any> => {
   try {
-    const url = `${appConstants.BASE_URL}${apiEndpoints.GIPHY.SEARCh_TRENDING.URL(appConstants.API_KEY, limit, offset)}`;
+    const url = `${appConstants.BASE_URL}${apiEndpoints.GIPHY.SEARCh_TRENDING.URL(appConstants.API_KEY, query, limit, offset)}`;
 
     return await apiCaller.get(url);
   // tslint:disable-next-line:no-useless-catch

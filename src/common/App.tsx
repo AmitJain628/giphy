@@ -27,7 +27,7 @@ export default () => {
     <>
       <StyledAppInner className='styledAppInner'>
         <Helmet>
-          <title>Puzzle game</title>
+          <title>Giphy Game</title>
           <meta
             name='description'
             content='react typescript ssr with code split'

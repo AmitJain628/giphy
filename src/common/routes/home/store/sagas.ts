@@ -12,10 +12,12 @@ export function* fetchTrendingGiphyData(): SagaIterator {
     try {
      yield put(actions.setLoading(true));
      // tslint:disable-next-line:no-any
-     const response: any = yield fetchTrendingGiphyService(10, 0);
+     const response: any = yield fetchTrendingGiphyService(10, 1);
      yield put(actions.setLoading(false));
      if (response && response.data) {
-        yield put(actions.setTrendingData(response.data));
+        // tslint:disable-next-line:no-commented-code
+         yield put(actions.setTrendingData(response.data));
+         yield put(actions.setPaginationData(response.data));
      }
     } catch (err) {
       yield put(actions.setLoading(false));
@@ -24,11 +26,13 @@ export function* fetchTrendingGiphyData(): SagaIterator {
     }
  }
 
- export function* searchGiphyData(): SagaIterator {
+ // tslint:disable-next-line:no-any
+ export function* searchGiphyData(payload: any): SagaIterator {
   try {
+   console.log('i m payload', payload);
    yield put(actions.setLoading(true));
    // tslint:disable-next-line:no-any
-   const response: any = yield searchGiphyService(0, 0);
+   const response: any = yield searchGiphyService(payload.payload, 10, 1);
    if (response && response.data) {
       yield put(actions.setSearchGiphyData(response.data));
    }
@@ -42,5 +46,6 @@ export function* fetchTrendingGiphyData(): SagaIterator {
 
 function* watcherSaga(): Generator {
     yield takeLatest(CONSTANTS.FETCH_DATA, fetchTrendingGiphyData);
+    yield takeLatest(CONSTANTS.SEARCH_GIPHY_DATA, searchGiphyData);
 }
 export default watcherSaga;
